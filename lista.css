@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+body {
+    font-family: 'Orbitron', Arial, sans-serif;
+    margin: 40px;
+    background: linear-gradient(135deg, #0d0d0d, #1a1a1a);
+    color: #00ffe7;
+}
+
+h1 {
+    text-align: center;
+    color: #00bfff;
+    text-shadow: 0 0 10px #00bfff;
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #121212;
+    box-shadow: 0 0 20px #00ffe7;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th,
+td {
+    border: 1px solid #00ffe7;
+    padding: 12px;
+    text-align: left;
+    color: #e0f7ff;
+}
+
+th {
+    background: linear-gradient(90deg, #003366, #0055aa);
+    color: #00ffe7;
+    text-shadow: 0 0 5px #00ffe7;
+}
+
+tr:nth-child(even) {
+    background-color: #1f1f1f;
+}
+
+tr:hover {
+    background-color: #2a2a2a;
+    transition: background-color 0.3s ease;
+}
+
+.voltar {
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    color: #00ffe7;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.voltar:hover {
+    color: #ff00ff;
+}
+
+.btn {
+    padding: 8px 12px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Orbitron', Arial, sans-serif;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.remover {
+    background-color: #ff0033;
+    color: white;
+    box-shadow: 0 0 10px #ff0033;
+}
+
+.remover:hover {
+    background-color: #cc0022;
+    box-shadow: 0 0 15px #ff0033;
+}
+
+.pdf {
+    background-color: #00cc66;
+    color: white;
+    box-shadow: 0 0 10px #00cc66;
+}
+
+.pdf:hover {
+    background-color: #00994d;
+    box-shadow: 0 0 15px #00cc66;
+}
