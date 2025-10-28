@@ -1,30 +1,17 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Login - Assistência Técnica</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-
-<body>
-
-    <div class="login-container">
-        <h2>Login do Sistema</h2>
-        <form action="login.php" method="post">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
-
-            <button type="submit">Entrar</button>
-        </form>
-
+<link rel="stylesheet" href="login.css">
+<div class="login-container">
+    <img src="img/celular.gif" alt="Ícone de celular" class="login-gif">
+    <h2>Login Técnico</h2>
+    <form action="login.php" method="post">
+        <input type="text" name="email" placeholder="E-mail" required>
+        <input type="password" name="senha" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
         <p style="text-align:center; margin-top:10px;">
             Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a>
-        </p>
-    </div>
+    </form>
+</div>
+</p>
+</div>
 
 </body>
 

@@ -1,52 +1,91 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* Fundo com textura metálica */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: linear-gradient(145deg, #1f1f1f, #2c2c2c);
+    color: #f0f0f0;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
 }
 
+/* Container do login */
 .login-container {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
+    background-color: #2a2a2a;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    width: 350px;
+    text-align: center;
+    border: 1px solid #00c8ff;
 }
 
-h2 {
-    text-align: center;
+/* Ícone de celular */
+.login-container .icon {
+    font-size: 48px;
+    color: #00c8ff;
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-top: 15px;
-    font-weight: bold;
+/* Título */
+.login-container h2 {
+    margin-bottom: 20px;
+    color: #00c8ff;
 }
 
-input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-button {
+/* Campos de entrada */
+.login-container input[type="text"],
+.login-container input[type="password"] {
     width: 100%;
     padding: 12px;
-    margin-top: 20px;
-    background-color: #007bff;
-    color: white;
+    margin: 10px 0;
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    border-radius: 6px;
+    background-color: #1a1a1a;
+    color: #fff;
+    outline: none;
+    border: 1px solid #444;
 }
 
-button:hover {
-    background-color: #0056b3;
+/* Botão de login */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #00c8ff;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #00a6d6;
+}
+
+/* Link de esqueci a senha */
+.login-container a {
+    display: block;
+    margin-top: 15px;
+    color: #aaa;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    color: #fff;
+}
+
+.login-gif {
+    width: 80px;
+    height: auto;
+    margin-bottom: 20px;
 }
