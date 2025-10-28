@@ -6,29 +6,36 @@
     <title>Ordem de Serviço - SCARTECH</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Orbitron', Arial, sans-serif;
             margin: 40px;
-            background-color: cyan;
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            color: #00ffe7;
         }
 
         h1 {
             text-align: center;
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff;
         }
 
         form {
-            background-color: #fff;
+            background: linear-gradient(135deg, #001f3f, #003366);
             padding: 20px;
             border-radius: 8px;
             max-width: 600px;
             margin: auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px #00bfff;
+            border: 1px solid #00bfff;
         }
 
         label {
             display: block;
             margin-top: 15px;
             font-weight: bold;
+            color: #00ffe7;
         }
 
         input,
@@ -38,31 +45,37 @@
             padding: 8px;
             margin-top: 5px;
             border-radius: 4px;
-            border: 1px solid #ccc;
+            border: 1px solid #00ffe7;
+            background-color: #0f0f0f;
+            color: #00ffe7;
         }
 
         button {
             margin-top: 20px;
             padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+            background-color: #00bfff;
+            color: #0f0f0f;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            box-shadow: 0 0 10px #00bfff;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #00ffe7;
+            box-shadow: 0 0 15px #00ffe7;
         }
 
         .Ordens {
             margin-top: 10px;
             padding: 10px 10px;
-            background-color: blue;
-            color: white;
+            background-color: #003366;
+            color: #00ffe7;
             border: none;
             border-radius: 4px;
             cursor: pointer;
+            box-shadow: 0 0 10px #00ffe7;
         }
     </style>
 </head>
