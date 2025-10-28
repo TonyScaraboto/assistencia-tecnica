@@ -27,10 +27,10 @@ body {
     border: 1px solid #00c8ff;
 }
 
-/* Ícone de celular */
-.login-container .icon {
-    font-size: 48px;
-    color: #00c8ff;
+/* GIF animado de celular */
+.login-gif {
+    width: 80px;
+    height: auto;
     margin-bottom: 20px;
 }
 
@@ -82,10 +82,4 @@ body {
 
 .login-container a:hover {
     color: #fff;
-}
-
-.login-gif {
-    width: 80px;
-    height: auto;
-    margin-bottom: 20px;
 }
