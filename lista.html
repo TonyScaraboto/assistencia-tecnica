@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Ordens de Serviço - SCARTECH</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f0f8ff;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .voltar {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            margin: 2px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remover {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .pdf {
+            background-color: #28a745;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lista de Ordens de Serviço</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Modelo</th>
+                <th>Defeito</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaOrdens">
+            <!-- Ordens serão inseridas aqui via JavaScript -->
+        </tbody>
+    </table>
+
+    <a class="voltar" href="index.html">← Voltar para o formulário</a>
+
+    <script>
+        const ordens = JSON.parse(localStorage.getItem('ordensServico')) || [];
+        const tabela = document.getElementById('tabelaOrdens');
+
+        function salvarOrdensAtualizadas() {
+            localStorage.setItem('ordensServico', JSON.stringify(ordens));
+            location.reload();
+        }
+
+        function gerarPDF(ordem) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(16);
+            doc.text("Ordem de Serviço - SCARTECH", 20, 20);
+
+            doc.setFontSize(12);
+            doc.text(`Nome do Cliente: ${ordem.nome}`, 20, 40);
+            doc.text(`Telefone: ${ordem.telefone}`, 20, 50);
+            doc.text(`Modelo do Aparelho: ${ordem.modelo}`, 20, 60);
+            doc.text(`Defeito Relatado: ${ordem.defeito}`, 20, 70);
+            doc.text(`Status do Serviço: ${ordem.status}`, 20, 80);
+            doc.text("Assinatura do Cliente:", 20, 100);
+            doc.line(20, 105, 180, 105);
+
+            doc.save(`OrdemServico_${ordem.nome.replace(/\s+/g, '_')}.pdf`);
+        }
+
+        ordens.forEach((ordem, index) => {
+            const linha = document.createElement('tr');
+            linha.innerHTML = `
+        <td>${ordem.nome}</td>
+        <td>${ordem.telefone}</td>
+        <td>${ordem.modelo}</td>
+        <td>${ordem.defeito}</td>
+        <td>${ordem.status}</td>
+        <td>
+          <button class="btn remover" onclick="removerOrdem(${index})">Remover</button>
+          <button class="btn pdf" onclick='gerarPDF(${JSON.stringify(ordem)})'>PDF</button>
+        </td>
+      `;
+            tabela.appendChild(linha);
+        });
+
+        function removerOrdem(index) {
+            if (confirm("Tem certeza que deseja remover esta ordem?")) {
+                ordens.splice(index, 1);
+                salvarOrdensAtualizadas();
+            }
+        }
+    </script>
+
+</body>
+
+</html>

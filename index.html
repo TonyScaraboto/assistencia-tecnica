@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ordem de Serviço - SCARTECH</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: cyan;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .Ordens {
+            margin-top: 10px;
+            padding: 10px 10px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Ordem de Serviço - Assistência Técnica</h1>
+
+    <form id="ordemServicoForm" action="/upload" method="post" enctype="multipart/form-data">
+        <label for="nomeCliente">Nome do Cliente:</label>
+        <input type="text" id="nomeCliente" name="nomeCliente" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="tel" id="telefone" name="telefone" required>
+
+        <label for="modeloAparelho">Modelo do Aparelho:</label>
+        <input type="text" id="modeloAparelho" name="modeloAparelho" required>
+
+        <label for="defeito">Defeito Relatado:</label>
+        <textarea id="defeito" name="defeito" rows="4" required></textarea>
+
+
+        <label for="imagem">Selecione uma imagem:</label>
+        <input type="file" id="imagem" name="imagem" accept="image/*" capture="environment">
+        <label for="assinatura">Assinatura do Cliente:</label>
+        <div
+            style="border: 1px solid #ccc; height: 100px; margin-top: 5px; border-radius: 4px; background-color: #f9f9f9;">
+            <p style="text-align: center; padding-top: 35px; color: #999;">(Espaço reservado para assinatura física)</p>
+        </div>
+        <label for="status">Status do Serviço:</label>
+        <select id="status" name="status">
+            <option value="Recebido">Recebido</option>
+            <option value="Em análise">Em análise</option>
+            <option value="Em reparo">Em reparo</option>
+            <option value="Finalizado">Finalizado</option>
+            <option value="Entregue">Entregue</option>
+        </select>
+        <input class="Ordens" type="button" value="Avançar" onclick="window.location.href='Lista.html'">
+
+        <button type="submit">Gerar Ordem de Serviço</button>
+    </form>
+
+    <script>
+        document.getElementById('ordemServicoForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const dados = {
+                nome: document.getElementById('nomeCliente').value,
+                telefone: document.getElementById('telefone').value,
+                modelo: document.getElementById('modeloAparelho').value,
+                defeito: document.getElementById('defeito').value,
+                status: document.getElementById('status').value
+            };
+
+            const imagemInput = document.getElementById('imagem');
+            const arquivoImagem = imagemInput.files[0];
+
+            if (arquivoImagem) {
+                const leitor = new FileReader();
+                leitor.onload = function (event) {
+                    const imagemBase64 = event.target.result;
+
+                    gerarPDF(dados, imagemBase64);
+                };
+                leitor.readAsDataURL(arquivoImagem);
+            } else {
+                gerarPDF(dados, null);
+            }
+
+            // Salvar no localStorage
+            const ordens = JSON.parse(localStorage.getItem('ordensServico')) || [];
+            ordens.push(dados);
+            localStorage.setItem('ordensServico', JSON.stringify(ordens));
+        });
+
+        function gerarPDF(dados, imagemBase64) {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            doc.setFontSize(16);
+            doc.text("Ordem de Serviço", 20, 20);
+
+            doc.setFontSize(12);
+            doc.text(`Nome do Cliente: ${dados.nome}`, 20, 40);
+            doc.text(`Telefone: ${dados.telefone}`, 20, 50);
+            doc.text(`Modelo do Aparelho: ${dados.modelo}`, 20, 60);
+            doc.text(`Defeito Relatado: ${dados.defeito}`, 20, 70);
+            doc.text(`Status do Serviço: ${dados.status}`, 20, 80);
+            doc.text("Assinatura do Cliente:", 20, 100);
+            doc.text("______________________________", 20, 105);
+            doc.line(20, 105, 180, 105);
+
+            if (imagemBase64) {
+                doc.text("Imagem Anexada:", 20, 115);
+                doc.addImage(imagemBase64, 'JPEG', 20, 120, 60, 60); // x, y, largura, altura
+            }
+
+            doc.save(`OrdemServico_${dados.nome.replace(/\s+/g, '_')}.pdf`);
+        }
+    </script>
+
+</body>
+
+</html>
