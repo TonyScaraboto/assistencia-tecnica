@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Painel de Controle - SCARTECH</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        body {
+            font-family: 'Orbitron', Arial, sans-serif;
+            margin: 40px;
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            color: #00ffe7;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff;
+            margin-bottom: 40px;
+        }
+
+        .painel {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #001f3f, #003366);
+            border: 1px solid #00bfff;
+            box-shadow: 0 0 20px #00bfff;
+            border-radius: 8px;
+            padding: 30px;
+            width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card h2 {
+            color: #00ffe7;
+            margin-bottom: 20px;
+        }
+
+        .card button {
+            padding: 10px 20px;
+            background-color: #00bfff;
+            color: #0f0f0f;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00bfff;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #00ffe7;
+            box-shadow: 0 0 15px #00ffe7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Painel de Controle - SCARTECH</h1>
+
+    <div class="painel">
+        <div class="card">
+            <h2>Nova Ordem de Serviço</h2>
+            <button onclick="window.location.href='index.html'">Abrir Formulário</button>
+        </div>
+
+        <div class="card">
+            <h2>Lista de Ordens</h2>
+            <button onclick="window.location.href='Lista.html'">Visualizar Lista</button>
+        </div>
+
+        <div class="card">
+            <h2>Sair da Conta</h2>
+            <button onclick="window.location.href='logout.php'">Logout</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

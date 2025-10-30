@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Ordens - SCARTECH</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+        body {
+            font-family: 'Orbitron', Arial, sans-serif;
+            margin: 40px;
+            background: linear-gradient(145deg, #0d0d0d, #1a1a1a);
+            color: #00ffe7;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00bfff;
+            text-shadow: 0 0 10px #00bfff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #001f3f;
+            box-shadow: 0 0 20px #00bfff;
+            border: 1px solid #00bfff;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #00ffe7;
+            text-align: left;
+            color: #00ffe7;
+        }
+
+        th {
+            background-color: #003366;
+        }
+
+        .voltar {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #00bfff;
+            color: #0f0f0f;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #00bfff;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .voltar:hover {
+            background-color: #00ffe7;
+            box-shadow: 0 0 15px #00ffe7;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lista de Ordens de Serviço</h1>
+
+    <table id="tabelaOrdens">
+        <thead>
+            <tr>
+                <th>Cliente</th>
+                <th>Telefone</th>
+                <th>Modelo</th>
+                <th>Defeito</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dados serão inseridos via JavaScript -->
+        </tbody>
+    </table>
+
+    <button class="voltar" onclick="window.location.href='index.html'">Voltar</button>
+
+    <script>
+        const tabela = document.querySelector("#tabelaOrdens tbody");
+        const ordens = JSON.parse(localStorage.getItem("ordensServico")) || [];
+
+        ordens.forEach(ordem => {
+            const linha = document.createElement("tr");
+            linha.innerHTML = `
+        <td>${ordem.nome}</td>
+        <td>${ordem.telefone}</td>
+        <td>${ordem.modelo}</td>
+        <td>${ordem.defeito}</td>
+        <td>${ordem.status}</td>
+      `;
+            tabela.appendChild(linha);
+        });
+    </script>
+
+</body>
+
+</html>
